@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 解决 可以在第二个元素中加入overflow：hidden
+    这个方法用来实现两列自适应布局
+    左边宽度固定 右边内容自适应
+     */
+    .container {
+      width: 100px;
+      height: 100px;
+      background-color: skyblue;
+      float: left;
+    }
+
+    .container2 {
+      /* width: 200px; */
+      height: 200px;
+      background-color: gray;
+      overflow: hidden;
+    }
+
+    /* 问题 3.第二个元素部分被第一个元素覆盖 但是文本信息没有被覆盖 */
+    /* .container {
+      width: 100px;
+      height: 100px;
+      background-color: skyblue;
+      float: left;
+    }
+
+    .container2 {
+      width: 200px;
+      height: 200px;
+      background-color: gray;
+    } */
+  </style>
+</head>
+
+<body>
+
+
+  <!-- <div class="container">
+    我是一个左浮的元素
+  </div>
+  <div class="container2">
+    我是一个没有设置浮动的元素
+  </div> -->
+
+  <div class="container">
+    我是一个左浮的元素
+  </div>
+  <div class="container2">
+    我是一个没有设置浮动的元素
+  </div>
+</body>
+
+</html>

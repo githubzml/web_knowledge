@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box1 {
+      width: 200px;
+      height: 200px;
+    }
+
+    .s1 {
+      border: 2px solid red;
+      position: absolute;
+      right: 100px;
+      top: 20px;
+    }
+
+    #div1 {
+      width: 200px;
+      height: 200px;
+      border: 2px red solid;
+      position: relative;
+      left: 100px;
+      top: 50px;
+    }
+  </style>
+</head>
+
+
+<body>
+  <!-- 参看连接  https://blog.csdn.net/dff1993/article/details/79897268-->
+  <!-- 流动模型Flow  浮动模型Float 层模型Layer -->
+  <!-- 1.流动模型
+    块状元素 自身而下垂直延伸分布
+    内联元素 从左至右水平分布
+   -->
+  <!-- 2.浮动模型
+    实现元素一左一右 float
+   -->
+  <!-- 3.层模型
+    绝对定位 positive:absolute
+    相对于最接近具有一个定位属性的父包含块进行绝对定位
+    如果不存在 则相对于body元素 即浏览器窗口
+
+    相对定位 positive:relative
+    left right top bottom 确定元素在正常文档流的偏移位置
+    相对于以前的位置移动
+    偏移前的位置保持不动
+    
+    固定定位
+    屏幕内网页窗口定位 不会随着浏览器窗口的滚动条滚动而变化
+   -->
+
+  <div class="box1">
+
+  </div>
+  <span class="s1">
+
+  </span>
+
+  <div id="div1"></div>
+  <span>偏移前的位置还保留不动，覆盖不了前面的div没有偏移前的位置</span>
+</body>
+
+</html>

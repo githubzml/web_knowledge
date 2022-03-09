@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* https://juejin.cn/post/7013953652578582558 */
+    /* 浅析 BFC原理 及其作用 */
+    /* BFC就是页面上的一个隔离的独立容器 容器里面的子元素不会影响到外面的元素 */
+    /* https://blog.csdn.net/sinat_36422236/article/details/88763187?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_antiscan_v2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_antiscan_v2&utm_relevant_index=2 */
+    
+    
+    /* 参考 https://blog.csdn.net/DFF1993/article/details/80394150 */
+    /* 1.阻止外边距折叠 */
+    /* 避免外边距重叠 可以放在不同的BFC容器中 */
+    .container {
+      overflow: hidden;
+    }
+
+    .container p {
+      width: 100px;
+      height: 100px;
+      background-color: skyblue;
+      margin: 100px;
+    }
+
+
+    /* div {
+      width: 100px;
+      height: 100px;
+      background-color: skyblue;
+      margin: 100px;
+    }
+     */
+  </style>
+</head>
+
+<body>
+  <!-- <div>
+
+  </div>
+  <div>
+
+  </div> -->
+
+  <div class="container">
+    <p></p>
+  </div>
+  <div class="container">
+    <p></p>
+  </div>
+</body>
+
+</html>

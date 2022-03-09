@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- ES6 Set Map  -->
+  <!-- Set 只存储值 数组去重 -->
+  <!-- Map [键盘,值] 学生名-成绩 -->
+  <!-- 查询更快 -->
+
+  <!-- https://blog.csdn.net/muzidigbig?type=blog -->
+
+  <!-- https://blog.csdn.net/muzidigbig/article/details/121995777 -->
+
+
+  <!-- https://www.cnblogs.com/lilife/p/13797853.html -->
+  <!-- https://blog.csdn.net/weixin_44302580/article/details/101195740 -->
+  <!-- https://blog.csdn.net/yuanxiang01/article/details/120860217?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_ecpm_v1~rank_v31_ecpm-1-120860217.pc_agg_new_rank&utm_term=js%E4%B8%ADset+map%E5%BA%94%E7%94%A8&spm=1000.2123.3001.4430 -->
+  <div>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+  </div>
+  <script>
+    let aa = document.querySelectorAll("p");
+
+    // aa.forEach(item => {
+    //   item.style.color = "red";
+    //   item.style.backgroundColor = "blue";
+    // })
+
+    const [p1, p2, p3] = document.querySelectorAll("p");
+
+    const m = new Map([[p1, {
+      color: 'red',
+      backgroundColor: 'yellow',
+      fontSize: '20px'
+    }],
+    [p2, {
+      color: 'green',
+      backgroundColor: 'black',
+      fontSize: '29px'
+    }],
+    [p3, {
+      color: 'blue',
+      fontSize: '10px'
+    }]])
+
+    m.forEach((a, b) => {
+      for (const key in a) {
+        if (Object.hasOwnProperty.call(a, key)) {
+          const element = a[key];
+          b.style[key] = element;
+        }
+      }
+    })
+
+    // // 获取数据
+    // obj.id;
+    // obj['id'];
+
+    // // 新增/修改数据
+    // obj['key'] = value;
+    // obj.key = value;
+
+    // // 删除数据
+    // delete obj.id;
+    // // 下面这种做法效率更高
+    // obj.id = undefined
+
+  </script>
+</body>
+
+</html>

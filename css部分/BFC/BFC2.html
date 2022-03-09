@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 问题 2.高度塌陷问题 通常情况下父元素的高度会被子元素撑开 子元素因为是浮动元素所以父元素发生高度塌陷 
+    上下边界重合重合  这是就可以采用BFC来清除浮动*/
+    .container {
+      border: 1px solid red;
+      /* 具有BFC容器形成条件 */
+      overflow: hidden;
+    }
+
+    .container p {
+      width: 100px;
+      height: 100px;
+      background-color: skyblue;
+      float: left;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div class="container">
+    <p></p>
+  </div>
+</body>
+
+</html>
