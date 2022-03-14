@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      margin: 0;
+      padding: 0;
+
+      width: 200px;
+      height: 200px;
+      background: url("./birds.jpg") no-repeat center;
+      border: 1px solid #333;
+    }
+
+    div {
+      margin-top: 10px;
+    }
+
+    .o {
+      background-size: 100% 100%;
+    }
+
+    .t {
+      /* 全包含 */
+      background-size: contain;
+    }
+
+    .e {
+      /* 覆盖 */
+      background-size: cover;
+    }
+  </style>
+</head>
+
+<body>
+  background-size: 100% 100%;
+  <div class="o">
+
+  </div>
+  background-size: contain;
+  <div class="t">
+
+  </div>
+  background-size: cover;
+  <div class="e">
+  </div>
+</body>
+
+</html>
