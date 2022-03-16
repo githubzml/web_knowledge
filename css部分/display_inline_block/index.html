@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* https://www.cnblogs.com/Ry-yuan/p/6848197.html */
+    /* inline（行内元素）
+    1.可以与其他行内元素共享一行 不独占一行
+    2.不能改变元素的height，width 大小由内容撑开
+    3.padding 上下左右都有效 margin left 和right有效 top bottom无效
+     */
+    span {
+      background-color: aqua;
+      /* width: 100px; 是不会生效的
+      height: 100px; */
+      /* padding:10px;  生效 */
+      /* margin-left: 10px; 生效
+      margin-right: 20px; */
+      /* margin-top: 10px; 不生效
+      margin-bottom: 20px; */
+    }
+
+    /* block（块元素） 
+    1.元素变为块元素 独占一行 不设置自己宽度的情况下 块级元素会默认填满父级元素的宽度
+    2.能够改变元素的height，width的值
+    3.padding margin top bottom left right 都生效
+    */
+    .aa {
+      background-color: antiquewhite;
+    }
+
+    /* inline-block 
+    1.结合了inline的特点 就是inlin的1特点 和block 的2，3特点
+    不独占一行的块元素
+    */
+
+    p {
+      background-color: azure;
+      display: inline-block;
+    }
+
+    .bb {
+      border: 1px solid #ccc;
+    }
+
+    .bb div {
+      width: 100px;
+      height: 100px;
+      background-color: blanchedalmond;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <span>000</span>
+  <span>123</span>
+  <div class="aa">234</div>
+  <div class="aa">345</div>
+  <p>666</p>
+  <p>777</p>
+
+  <div class="bb">
+    <div>9898</div>
+    <div>9797</div>
+  </div>
+</body>
+
+</html>

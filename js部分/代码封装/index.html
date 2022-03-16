@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 闭包
+    // https://juejin.cn/post/7075124156949331976?share_token=7251327c-bb82-49c6-bbec-c1173fa6645f#comment
+    // 感觉这篇文章 我没读出来什么
+    // 返回一个函数变量
+    function fun(a) {
+      let fn = function (b) {
+        return a + b;
+      }
+      return fn
+    }
+
+    // console.log(fun(1)(2));
+    // console.log(fun()());
+   
+  </script>
+</body>
+
+</html>
