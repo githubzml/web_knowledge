@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    /* https://www.cnblogs.com/Ry-yuan/p/6848197.html */
     /* inline-block vs float 布局 */
 
     /* float 脱离文档流 高度塌陷 */
@@ -35,6 +36,10 @@
       background-color: lavenderblush;
     }
 
+    .bb {
+      font-size: 0;
+    }
+
     .bb,
     .cc {
       border: 1px solid #ccc;
@@ -43,26 +48,38 @@
 
     .bb div {
       display: inline-block;
+      font-size: 12px;
     }
 
     .cc {
       overflow: hidden;
     }
 
-    /* .cc .child3,
-    .cc .child4 {
-      float: left;
-    } */
 
     .cc div {
-      /* float: left; */
-      display: inline-block;
+      float: left;
     }
+
+    /* inline-block 存在的小问题
+    元素之间会有间隙问题 间隙为4像素
+    这个问题产生的原因是由换行引起的
+    换行回车符号相当于空白符号
+    真正的原因我们并不怎么注意空白符
+
+    去除空隙方法
+    对父元素添加font-size:0 即将字体大小设置为0 那么那个空白符也变成了0像素 从而消除空白符
+    */
+
+    /* 总结：
+    display：inline-block的布局方式和浮动布局方式 究竟使用哪个 应该根据实际情况来决定
+    a.对于横向东西排列 可以使用inline-block 因为这样清晰 也不用像浮动那样清除浮动 害怕布局混乱
+    b.对于浮动布局就用于需要文字环绕的时候，这才是浮动的用武之地 水平排列就交给inline-block了
+     */
   </style>
 </head>
 
 <body>
-
+  inline-block
   <div class="bb">
     <div class="child1">child1</div>
     <div class="child2">child2</div>
@@ -70,6 +87,7 @@
     <div class="child4">child4</div>
   </div>
 
+  float-left
   <div class="cc">
     <div class="child1">child1</div>
     <div class="child2">child2</div>

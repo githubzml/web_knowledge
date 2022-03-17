@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../common.css">
+  <style>
+    .left {
+      float: left;
+    }
+
+    /* 右侧overflow 会创建BFC 完成自适应 */
+    .right {
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="left">定宽</div>
+    <div class="right">自适应</div>
+  </div>
+</body>
+
+</html>

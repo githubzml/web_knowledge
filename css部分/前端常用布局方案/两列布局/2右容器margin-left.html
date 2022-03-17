@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../common.css">
+  <style>
+    .left {
+      float: left;
+    }
+
+    /* float 脱离文档流 
+    所以margin-left 一个左侧盒子的宽度
+     */
+
+    .right {
+      margin-left: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="left">定宽</div>
+    <div class="right">自适应</div>
+  </div>
+</body>
+
+</html>

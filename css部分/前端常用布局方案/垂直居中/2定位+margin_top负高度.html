@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 1 和 2 居然 有细微差别 奇怪？ */
+    .parent {
+      width: 300px;
+      height: 500px;
+      margin: 0 auto;
+      background-color: #ff8787;
+    }
+
+    .child {
+      width: 300px;
+      height: 300px;
+      background-color: #9966ff;
+    }
+
+    .parent {
+      position: relative;
+    }
+
+    .child {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      margin-top: -150px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="parent">
+    <div class="child"></div>
+  </div>
+</body>
+
+</html>
