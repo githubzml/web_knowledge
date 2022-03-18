@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    // 如何安全获取浮点数的整数部分？
+
+    // https://mp.weixin.qq.com/s/6yN8hvi3__v6q5thhqBVVA
+
+    let qq = parseInt(0.0000005) === 5;
+
+    console.log('qq', qq); //true
+
+    // 先解释下为什么相等？
+    //1. parseInt(string, radix)解析一个字符串并返回指定基数的十进制整数， radix是 2-36 之间的整数，表示被解析字符串的基数
+
+    //2. 如果传入参数 不是字符串类型 parseInt会将参数自动转化为字符串 再去做取整数
+
+    //3. String(0.0000005); // => '5e-7'
+
+    //4. parseInt('5e-7');    // => 5
+
+    //5. parseInt('5e-7')考虑到第一个数字'5'，但跳过'e-7'。
+
+    //6. parseInt()总是将其第一个参数转换为字符串，所以小于10 -6的浮点数将以指数表示法编写。然后 parseInt()从float的指数表示法中提取整数！
+
+
+    // 如何安全获取浮点数的整数部分？
+
+    // 建议使用以下Math.floor()函数
+
+    // Math.floor(0.0000005); // => 0
+
+    // 解释 parseInt(999999999999999999999) 等于 1 吗？
+
+    let cc = String(999999999999999999999)
+
+    console.log('cc', cc); //1e+21
+
+    console.log('dd', parseInt("1e+21")); //1
+
+    let pp = Math.floor(999999999999999999999);
+
+    console.log('pp', pp);
+
+  </script>
+</body>
+
+</html>

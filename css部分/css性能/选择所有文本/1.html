@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .all {
+      user-select: all;
+    }
+
+    .all::selection {
+      color: lightcoral;
+      background-color: blue;
+    }
+
+    /* 只有某些CSS属性可以和::selection 一起使用
+    color
+    background-color
+    text-decoration
+    text-shadow
+    
+    */
+  </style>
+</head>
+
+<body>
+  <!-- https://mp.weixin.qq.com/s/1ETrCmB3JSPFZurLD1ihjA -->
+  <h2 class="all">
+    20 CSS Tips That Greatly Improve User Experience
+  </h2>
+  <h3 class="all">
+    bytefish
+  </h3>
+
+  <div>
+    tel num:<span class="all">12345678</span>
+  </div>
+
+  <p class="all">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi velit eos asperiores labore voluptate
+    atque
+    doloremque ad assumenda nihil quia ullam ipsum in non magni quam facere fugiat, ipsam amet.</p>
+
+</body>
+
+</html>

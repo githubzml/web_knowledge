@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* https://developer.mozilla.org/zh-CN/docs/Web/CSS/scroll-behavior */
+
+    section {
+      width: 400px;
+      height: 200px;
+      border: 1px solid #ccc;
+      overflow-y: auto;
+    }
+
+    section div {
+      height: 100%;
+    }
+
+    .t section {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div class="o">
+      <p>效果1</p>
+      <nav>
+        <a href="#a">a</a>
+        <a href="#b">b</a>
+        <a href="#c">c</a>
+      </nav>
+      <section>
+        <div id="a">a</div>
+        <div id="b">b</div>
+        <div id="c">c</div>
+      </section>
+    </div>
+    <div class="t">
+      <p>效果2 scroll-behavior: smooth;</p>
+      <nav>
+        <a href="#a2">a2</a>
+        <a href="#b2">b2</a>
+        <a href="#c2">c2</a>
+      </nav>
+      <section>
+        <div id="a2">a2</div>
+        <div id="b2">b2</div>
+        <div id="c2">c2</div>
+      </section>
+    </div>
+
+    scroll-behavior: smooth; 滚动效果更舒适
+  </div>
+</body>
+
+</html>
