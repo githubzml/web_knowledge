@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    input {
+      margin-top: 50px;
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <p>这是一段文字</p>
+    <input type="text">
+    <img src="./vv.png" alt="">
+  </div>
+  <script>
+    // js map
+
+    const arr = [1, 4, 9, 16];
+
+    let brr = arr.map(item => item * 2);
+
+    console.log('brr', brr);
+
+    let crr = arr.map(item => {
+      if (item == 4) {
+        return item * 2
+      }
+      return item;
+    });
+
+    console.log('crr', crr);
+
+    // filter
+    // const drr = [{}]
+
+    let obj = {};
+    function Person() { };
+    let cc = [];
+
+
+
+    console.log('obj', obj);
+    console.log('Person', Person);
+
+    console.log('Person2', Person.prototype);
+    console.log('Person3', Person.__proto__);
+
+    console.log('cc', cc);
+
+    let kk = {
+      name: "zz"
+    }
+    // 对象里 为什么会有这个方法？
+    // 首先会在自身上找
+    // 自身没有 会在原型对象上找
+    // 对象的原型对象
+    // 如果再没有 就会继续往上找
+
+    console.log('11', kk.__proto__);
+
+    console.log('111', kk.__proto__.__proto__);
+
+    console.log('1111', kk.hasOwnProperty("name"));
+
+    function ll() {
+      this.aa = function () { }
+    }
+
+    let pp = new ll();
+
+    console.log('22', ll.prototype == pp.__proto__);
+
+    console.log('222', pp);
+
+
+  </script>
+</body>
+
+</html>
