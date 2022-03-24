@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 数据类型侧重角度 -->
+
+  <!-- 5中基本类型 1中引用类型 -->
+
+  <!-- 
+    Number
+    String
+    Boolean
+    Undefined
+    Null
+
+    Object
+    Object Function Array 
+   -->
+  <script>
+    let a = "";
+    let b = 123;
+    let c = {};
+    let d = [];
+    function e() { }
+    let f = null;
+    let g = true;
+    let h = undefined;
+
+    // typeof
+
+    console.log(111, typeof (a));// =>string
+    console.log(111, typeof (b));// =>number
+    console.log(111, typeof (c));// =>object
+    console.log(111, typeof (d));// =>object
+    console.log(111, typeof (e));// =>function
+    console.log(111, typeof (f));// =>object
+    console.log(111, typeof (g));// =>boolean
+    console.log(111, typeof (h));// =>undefined
+
+    // instanceof
+    console.log(222, {} instanceof Object);//=>true
+    console.log(222, [] instanceof Array);//=>true
+    console.log(222, e instanceof Function);//=>true
+    console.log(222, null instanceof Object);//=>false
+    console.log(222, undefined instanceof Object);//=>false
+
+    // isNaN
+
+    // isArray
+
+    console.log('111', Array.isArray([]));
+
+    // 这种方法是最准确的
+    console.log(333, Object.prototype.toString.call(1));// =>'[object Number]'
+    console.log(333, Object.prototype.toString.call("2"));//=>'[object String]'
+
+    function getDataType(p) {
+      return Object.prototype.toString.call(p).split(' ')[1].split("]")[0];
+    }
+    console.log('999', getDataType(null));
+  </script>
+</body>
+
+</html>
