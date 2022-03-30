@@ -59,12 +59,34 @@ hash 和 history 有什么区别
 
 location.hash 的值 就是 #search
 
+hash 路由模式的实现主要基于下面几个特性：
+
+1. ulr 中 hash 值是客户端的一种状态 也就是说 向服务器端发送请求时 hash 部分不会被发送
+2. 可以使用hashchange 事件监听 hash 值的变化 从而对页面进行跳转渲染
+
+history 实现原理
+history.pushState() 和 replaceState()
+这两个 API 可以在不进行刷新的情况下 操作浏览器的历史记录
+前者是新增一个历史记录 后者是替换当前的历史记录
+
+popState 事件监听 url 的变化
+history.pushState() 或者 history.replaceState() 不会触发 popState 事件 我们需要手动触发页面跳转渲染
+
+参考
+https://blog.csdn.net/yexudengzhidao/article/details/101448168
 
   谷歌浏览器 把 https:/ 前缀给去掉了 为什么?
 https://www.cnblogs.com/whatzblog/p/13338613.html
 谷歌工程师 Emily Schechter 曾在 Chromium 反馈页面中提到：Chrome 团队一直将简易性、可用性、安全性作为衡量 UI 的标准。为了让 URL 能更好地被用户理解、移除那些容易让用户分心却并不重要的内容，我们计划从多功能框（地址栏）移除 https 和特殊子域名 www
 
-解决方法:安装这个插件
+解决方法: 安装这个插件
 https://chrome.google.com/webstore/detail/suspicious-site-reporter/jknemblkbdhdcpllfgbfekkdciegfboi
 
 考虑到大部分互联网协议都认同URL HTTP部分冗余，所以谷歌这么做似乎显得非常情有可原。
+
+  vuex 有哪些属性
+  State 定义了数据结构 这里设置默认的初始状态
+  Getter 计算属性
+  Mutation 唯一更改store 中状态的方法 必须是同步函数
+  Action 用于提交mutation 而不是直接变更状态 可以包含任何异步操作
+  Module 可以拆分 为多个store

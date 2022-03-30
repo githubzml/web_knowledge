@@ -8,6 +8,9 @@ https://tool.lu/
 一尾流莺
 https://juejin.cn/user/4099422807393901
 
+山月
+https://q.shanyue.tech/interview.html
+
 待解决问题：
 
 移动端页面适配方案 视频
@@ -45,3 +48,15 @@ https://pinia.web3doc.top/
 搞清楚 问题是怎么出来的 然后反推 就解决了问题 z
 
 git 本地分支 远端分支 开发在本地分支 暂且这么记
+
+模块化开发
+目录结构规范
+设计规范
+接口规范
+
+  ajax有什么优点？有什么缺点？
+  局部刷新
+  缺点？
+
+  同步和异步的区别？
+  

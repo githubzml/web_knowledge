@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="h1">1</button>
+  <button id="h2">2</button>
+  <button id="h3">3</button>
+  <script>
+    // https://blog.csdn.net/yexudengzhidao/article/details/101448168
+
+    // https://developer.mozilla.org/zh-CN/docs/Web/API/WindowEventHandlers/onpopstate
+
+    // https://blog.csdn.net/swc1997/article/details/118242920?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_ecpm_v1~rank_v31_ecpm-2-118242920.pc_agg_new_rank&utm_term=history+vue+%E6%80%8E%E4%B9%88%E7%9B%91%E5%90%ACpushState&spm=1000.2123.3001.4430
+    let h2 = document.getElementById("h2");
+    let h3 = document.getElementById("h3");
+
+    h2.onclick = function () {
+      let stateObj = { foo: "bar" };
+      history.pushState(stateObj, "page 2", '/test2')
+
+
+      console.log('111');
+
+    }
+    // h3
+    h3.onclick = function () {
+      let stateObj = { foo: "bar3" };
+      history.pushState(stateObj, "page 3", '/test3')
+    }
+
+    // History.pushState() 方法 用于在历史中添加一条记录
+    // 假设 example.com/1.html
+    // let stateObj = {foo:'bar'}
+    // history.pushState(stateObj, "page 2", '2.html');
+    // 添加新纪录后 浏览器地址栏会立即显示 example.com/2.html 但是并不会跳转到 2.html 甚至也不会检查 2.html 是否存在
+    // 它只是成为在浏览历史中的最新记录 这时 在地址栏输入一个新地址 比如访问(google.com) 然后点击倒退按钮 页面的url将显示 2.html
+    // 再次点击倒退 url 将显示 1.html
+
+    // 总之 pushState（） 方法不会触发页面的刷新 只是导致History 对象发生变化 地址栏会有反应 使用该方法后
+    // 就可以使用History.state 读出状态对象
+
+    // popState 事件
+
+    // 仅仅调用pushState() 方法 或者 replaceState() 并不会触发该事件 只用户点击浏览器倒退按钮 和 前进按钮 或者 使用
+    // JS 调用history.back() history.forward() history.go(); 时才会触发
+
+
+    // 监听pushState  和 replaceState 要放在服务器环境上
+    window.onpopstate = function (event) {
+      // alert(111 + JSON.stringify(event.state))
+      alert("location:" + document.location + ",state" + JSON.stringify(event.state))
+    }
+
+  </script>
+</body>
+
+</html>

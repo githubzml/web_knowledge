@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>自定义对pushState、replaceState的监听</title>
+</head>
+
+<body>
+  <button onclick="push()">点击切换路由</button>
+  <button onclick="replace()">点击替换路由</button>
+  <script>
+    function push() {
+      window.history.pushState({ data: "from test1" }, "", "/test1");
+    }
+
+    function replace() {
+      window.history.replaceState({ data: "from test2" }, "", "/test2");
+    }
+
+    /**
+     * 重写history的pushState和replaceState
+     * @param action pushState|replaceState
+     * @return {function(): *}
+     */
+    function wrapState(action) {
+      // 获取原始定义
+      let raw = history[action];
+      return function () {
+
+        // 经过包装的pushState或replaceState
+        let wrapper = raw.apply(this, arguments);
+
+        // 定义名为action的事件
+        let e = new Event(action);
+
+        // 将调用pushState或replaceState时的参数作为stateInfo属性放到事件参数event上
+        e.stateInfo = { ...arguments };
+        // 调用pushState或replaceState时触发该事件
+        window.dispatchEvent(e);
+        return wrapper;
+      }
+    }
+
+    // //修改原始定义
+    // history.pushState = wrapState("pushState");
+    // history.replaceState = wrapState("replaceState");
+
+    // // 监听自定义的事件
+    // window.addEventListener("pushState", function (e) {
+    //   console.info("pushState", e.stateInfo);
+    // })
+    // window.addEventListener("replaceState", function (e) {
+    //   console.info("replaceState", e.stateInfo);
+    // })
+
+    window.onpopstate = function (event) {
+      alert("location: " + document.location + ", state: " + JSON.stringify(event.state));
+    };
+  </script>
+</body>
+
+</html>

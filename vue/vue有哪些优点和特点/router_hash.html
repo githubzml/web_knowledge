@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <a href="#/login">登录</a>
+    <a href="#/register">注册</a>
+    <div id="contain"></div>
+  </div>
+  <script>
+    if ("onhashchange" in window) {
+      window.addEventListener("hashchange", funcRef, false);
+    }
+    const ele = document.getElementById("contain");
+    function funcRef() {
+      let localHash = location.hash;
+      switch (localHash) {
+        case "#/login":
+          ele.innerHTML = "<h1>登录页面</h1>";
+          break;
+        case "#/register":
+          ele.innerHTML = "<h1>注册页面</h1>";
+          break;
+        default:
+          break;
+      }
+    }
+  </script>
+</body>
+
+</html>

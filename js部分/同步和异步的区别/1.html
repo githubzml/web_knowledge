@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html -->
+  <script>
+    // js异步编程的四种方法
+
+    // 1.比如
+
+    // f1();
+    // f2();
+
+    // 同步 后者必须等待前者执行完毕 才能执行
+
+    // 改写
+
+    function f1(callback) {
+      setTimeout(() => {
+        // f1 的任务代码
+        callback();
+      })
+    }
+
+    f1(f2)
+
+    // 采用这种方式 我们把同步变成异步操作 f1 不会阻塞程序运行 相当于先执行程序的主要逻辑 将耗时的操作推迟执行
+    // 优点是简单 容易理解
+    // 缺点是不利于代码的阅读和维护 会导致流程很乱
+
+    // 2.事件监听
+    // 采用事件驱动 任务的执行顺序不取决于代码的顺序 取决于某个事件是否发生
+
+    f1.on('done', f2)// 当f1 发生done事件就执行f2
+
+    // 改写
+
+    function f1() {
+      setTimeout(() => {
+        //f1的任务代码
+        f1.trigger("done") //表示执行完成后 立即出发done事件 从而开始执行f2
+      })
+    }
+
+    // 流程也不是很清晰
+
+    // 3. 发布/订阅 也叫观察者模式
+
+    jQ.subscribe("done", f2);
+
+    // 改写
+
+    function f1() {
+      setTimeout(() => {
+        //f1任务代码
+        Jquery.publish("done") // f1 执行完成后 向 "信号中心" jQuery 发布done 信号 从而引发 f2的执行
+      }, 1000);
+    }
+
+    // 也可以取消订阅
+    Jquery.unsubscribe("done", f2) //我们可以了解 多少信号 每个信号有多少订阅者 从而监控程序的运行
+
+
+
+    // 4.promise
+
+    f1().then(f2).then(f3).catch(err => { f4 }) //它有前三种方法都没有的好好处； 如果一个任务已经完成 在添加回调函数
+    //  该函数会立即执行  不用担心流程乱 缺点就是编写和理解 都相对较难
+  </script>
+</body>
+
+</html>
