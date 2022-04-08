@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function foo() {
+      console.log('this', this);
+    }
+    // foo.call(undefined);
+
+    let name = "zz";
+    let obj = {
+      name: "obj"
+    }
+
+    function bar() {
+      console.log('this', this.name);
+    }
+    // 引用类型 绑定this 指向
+    // bar.call(name);
+
+    function zz() {
+      console.log('this', this);
+      return "success"
+    }
+
+    Function.prototype._call = function (ctx, ...args) {
+      const o = ctx == undefined ? window : Object(ctx);
+      const key = Symbol();
+      o[key] = this;
+      // console.log('...args' + (...args )+ "777");
+      const result = o[key](...args);
+      console.log('result', result);
+
+      delete o[key];
+      return result;
+    }
+
+    zz._call(undefined);
+
+
+    // const key = Symbol();
+    // console.log('key', key);
+
+  </script>
+</body>
+
+</html>

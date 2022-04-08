@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    Function.prototype.$call = function (ctx, ...args) {
+      console.log('222', ...args);
+
+      const fn = this;
+      ctx.fn = fn;
+      ctx.fn(...args);
+      delete ctx.fn
+    }
+
+    function say(name) {
+      console.log(name + this.age + '岁了');
+
+    }
+    const obj = { age: 23 }
+    say.$call(obj, "sea", "ll")
+
+  </script>
+</body>
+
+</html>
