@@ -23,8 +23,29 @@
       console.log(name + this.age + '岁了');
 
     }
-    const obj = { age: 23 }
-    say.$call(obj, "sea", "ll")
+    // const obj = { age: 23 }
+    // say.$call(obj, "sea", "ll")
+
+    function foo() {
+      this.name = 'foo'
+    }
+    function bar() {
+      this.age = 23;
+      console.log('111' + this.name + this.aa);
+    }
+    // bar.call(foo)
+
+    const kk = { aa: 'aa' }
+
+    Function.prototype._call = function (ctx, ...args) {
+      ctx.fn = this;
+      ctx.fn(...args);
+      delete ctx.fn;
+    }
+    bar._call(kk)
+    // bar._call(null)
+
+    // console.log('11', );
 
   </script>
 </body>
