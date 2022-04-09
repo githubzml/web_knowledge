@@ -36,6 +36,37 @@
   <div class="parent">
     <div class="child"></div>
   </div>
+  <script>
+  
+    //产生包含最小值和最大值的随机数
+    function RandomNum(Min, Max) {
+      var num = Min + Math.round(Math.random() * (Max - Min));
+      return num;
+    }
+
+    //产生不重复随机数（5—20   5个）
+    //定义数组存储随机数
+    // 取几个
+    function getJg(c, d, n) {
+      var arr = [];
+      for (var i = 0; i < n; i++) {
+        arr[i] = RandomNum(c, d);  // 调用上面封装好的方法
+        for (var j = 0; j < i; j++) {
+          //如果重复则 i-- 重新产生一个
+          if (arr[i] == arr[j]) {
+            i--;
+            break;
+          }
+        }
+      }
+      return arr;
+    }
+
+
+
+    console.log(getJg(0, 8, 3)); //从0到8取3个
+
+  </script>
 </body>
 
 </html>
