@@ -11,6 +11,12 @@ https://juejin.cn/user/4099422807393901
 山月
 https://q.shanyue.tech/interview.html
 
+TianTianUp
+https://juejin.cn/post/6866914148387651592
+
+大厂实战开发聊天室
+https://www.bilibili.com/video/BV1554y1p7UT?p=3
+
 待解决问题：
 
 移动端页面适配方案 视频
@@ -305,7 +311,21 @@ http 状态码
 虚拟 DOM 与 真实 DOM 的区别
 虚拟DOM 不会进行排版和重绘
 虚拟DOM 就是把真实的DOM 转化为JS代码
-虚拟DOM 进行频繁的修改 然后再一次性比较,并修改真实DOM 中需要更改的部分 最后合并在真实DOM 中进行排版和重绘 减少过多DOM 节点的排版和重绘损耗 
+虚拟DOM 进行频繁的修改 然后再一次性比较, 并修改真实DOM 中需要更改的部分 最后合并在真实DOM 中进行排版和重绘 减少过多DOM 节点的排版和重绘损耗 
 
 I 公司
 
+2022-4-14
+
+flex： 1
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex#try_it
+
+https://blog.csdn.net/qq_40138556/article/details/103967529
+
+flex：1 是 flex-grow：1 放大1倍 flex-shrik: 假定缩小1倍 flex-basis: 假定0
+但是一般好像不单独使用 单独初始值 其实没太多用 不用记 看文档
+
+闭包
+
+https://juejin.cn/post/6844904048961781774#comment 请叫我大苏
+js内存泄漏场景，如何监控以及分析
