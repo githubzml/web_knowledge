@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="startBtn">点击</button>
+    <button id="startBtn2">点击2</button>
+    <button id="startBtn3">点击3</button>
+    <button id="startBtn4">点击4</button>
+
+
+    <script>
+        // 内存泄漏监控
+        var t = null;
+        var replaceThing = function () {
+            var o = t
+            var unused = function () {
+                if (o) {
+                    console.log("hi")
+                }
+            }
+
+            t = {
+                longStr: new Array(100000).fill('*'),
+                someMethod: function () {
+                    console.log(1)
+                }
+            }
+        }
+        // setInterval(replaceThing, 1000)
+
+        var arr = [];
+        let startBtn = document.getElementById("startBtn");
+        let startBtn2 = document.getElementById("startBtn2");
+        let startBtn3 = document.getElementById("startBtn3");
+        let startBtn4 = document.getElementById("startBtn4");
+
+
+
+        startBtn.addEventListener("click", function () {
+            var a = new Array(100000).fill(1);
+            var b = new Array(20000).fill(1);
+            arr.push(b);
+        })
+        startBtn2.addEventListener("click", function () {
+            console.log(222);
+            arr = [];
+        })
+        let timer;
+
+        let timer2;
+
+        let fn = t1();
+
+        startBtn3.onclick = function () {
+            clearInterval(timer);
+            fn = null;
+            console.log(333);
+        }
+
+        startBtn4.onclick = function () {
+            clearInterval(timer2)
+            console.log(444);
+        }
+
+
+        function t1() {
+            let arr = [];
+            return function () {
+                return arr.push(...new Array(100000).fill('*'));
+            }
+        }
+
+        timer = setInterval(() => {
+            console.log(111, fn());
+        }, 1000)
+
+
+        var t = null;
+        var replaceThing = function () {
+            var o = t
+            var unused = function () {
+                if (o) {
+                    console.log("hi")
+                }
+            }
+
+            t = {
+                longStr: new Array(100000).fill('*'),
+                someMethod: function () {
+                    console.log(1)
+                }
+            }
+        }
+        // timer2 = setInterval(replaceThing, 1000)
+
+        // let kk = new Array(100000).fill('*');
+        // let ll = kk.push(...new Array(100000).fill('*'));
+        // console.log(123, kk, ll);
+
+
+
+
+
+
+        // fn = null;
+
+
+    </script>
+</body>
+
+</html>

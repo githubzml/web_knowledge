@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 闭包作用 1. 让变量始终保持在在内存中 2. 外部可访问内部实现到共享
+
+    // 不足 1.可能会导致内存泄漏 2.代码不易阅读
+
+
+    // 节流防抖动
+
+    function fn1() {
+      let a = 10;
+
+      function fn2() {
+        a++;
+        console.log("闭包", a);
+      }
+      return fn2;
+    }
+    let fn = fn1(); //fn1 的执行结果就是闭包
+    fn();
+    fn();
+    fn();
+    fn();
+
+    // 思考一下 直接return 或者子函数 也能拿到全局变量 为什么还需要闭包呢？
+
+    // 直接return
+    function fn3() {
+      let a = 10;
+      a++;
+      return a
+    }
+
+    console.log('直接return', fn3());
+    console.log('直接return', fn3());
+    console.log('直接return', fn3());
+    console.log('直接return', fn3());
+
+    // 子函数
+    function fn4() {
+      let a = 10;
+      a++;
+
+      function fn5() {
+        console.log('子函数', a)
+      }
+
+      fn5();
+    }
+
+    fn4();
+    fn4();
+    fn4();
+    fn4();
+
+    // 以上多调用几次就发现不同了 
+    // return 和 子函数 执行完毕均回收变量
+    // closure 执行任可以读取内存中变量
+
+    // 案例-模拟栈
+    const Stack = (() => {
+      let arr = [];
+      return {
+        push: (value) => arr.push(value),
+        pop: (value) => arr.pop(value),
+        size: () => arr.length
+      }
+    })();
+
+    Stack.push("a");
+    Stack.push("b");
+
+    console.log('-模拟栈', Stack.size());
+    console.log('-模拟栈', Stack.pop());
+    console.log('-模拟栈', Stack.size());
+
+    // 示例
+    function makeAdder(x) {
+      return function (y) {
+        return x + y
+      }
+    }
+    let add5 = makeAdder(5);
+    let add10 = makeAdder(10);
+
+    console.log('add5', add5(2));
+    console.log('add5', add10(2));
+
+    add5 = null;
+    add10 = null;
+
+    // console.log('add5释放', add5(1));
+    // console.log('add10释放', add10(1));
+
+    // closure 经典例题
+
+    for (var i = 0; i < 5; i++) {
+      ((j) => {
+        setTimeout(() => {
+          console.log('j', j);
+        }, j * 1000)
+      })(i)
+    }
+
+    // 节流 防抖
+    // 防抖 输入框
+    // https://blog.csdn.net/Junikusa/article/details/123615077
+    function debounce(fn, wait = 50) {
+      let timer;
+      return function () {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => {
+          timer = null;
+          fn.apply(this, arguments);
+        }, wait)
+      }
+    }
+    // 节流 页面滚动 图片懒加载 无限加载情况下 需要在滚动页面时 每隔一段时间发起一次请求 
+    function throttle(fn) {
+      let canRun = true;
+      return function () {
+        if (!canRun) return;
+        canRun = false;
+        setTimeout(() => {
+          fn.apply(this, arguments);
+          canRun = true;
+        }, 1000)
+      }
+    }
+
+    // 内存泄漏处理
+    // https://juejin.cn/post/7051604174357676062#heading-5
+
+    function fn6() {
+      let test = new Array(1000).fill("rocky");
+      return function () {
+        console.log("Rocky");
+      }
+    }
+
+    let fn6Child = fn6();
+    fn6Child();
+    // 因为返回函数中并没有对fn6 函数内部引用， 函数fn6 内部text 变量完全可以被回收
+
+    function fn7() {
+      let test = new Array(1000).fill("rocky");
+      return function () {
+        return test;
+      }
+    }
+
+    let fn7Child = fn7();
+    fn7Child();
+
+    // 因为return 的函数 fn7 中 存在test 变量引用 所以test并不会被回收，也就造成了 内存泄漏；
+    fn7Child = null; //置空
+    // 以上就不会造成内存泄漏
+    // 不正确的使用closure可能会造成内存泄漏
+
+
+    function MyObj(name, msg) {
+      this.name = name.toString();
+      this.msg = msg.toString()
+    }
+    MyObj.prototype.getName = function () {
+      return this.name
+    }
+    MyObj.prototype.getMsg = function () {
+      return this.msg
+    }
+
+    let cc = new MyObj("cc", 'a msg');
+    console.log('cc', cc.getMsg());
+
+    // https://juejin.cn/post/6937469222251560990
+
+    let aa = 0;
+    function foo() {
+      let bb = 14
+      return function fo() {
+        console.log('111', aa, bb);
+      }
+
+    }
+    let ll = foo();
+    ll();
+    ll = null;
+  </script>
+</body>
+
+</html>
