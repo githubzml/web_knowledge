@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul></ul>
+    <script>
+        // https://blog.csdn.net/m0_37793545/article/details/79193254
+        // https://blog.csdn.net/ZS74520/article/details/109399769
+        // https://blog.csdn.net/u013949658/article/details/64124408
+
+        let aa = document.querySelector("ul");
+        let bb = aa.getElementsByTagName("li");
+        let cc = aa.querySelectorAll("li");
+        console.log(aa);
+
+        for (let index = 0; index < 3; index++) {
+            aa.appendChild(document.createElement("li"))
+        }
+        console.log('bb', bb);
+        console.log('cc', cc);
+
+        // 1. 静态/动态 可以理解为后创建的
+        // querySelector 获取静态元素
+        // getElementsByTagName 获取静态元素
+
+        //2. 如果不需要很多getElementsBy...尽量使用 getElementsBy
+        // 很多的情况 querySelectorAll 因为方便
+        // 所以看是方便优先 还是性能优先
+
+        // 但现在的浏览器测试结果来看 仅存在细微差别 也不会很大
+
+        console.time('querySelectorAll');
+        for (var i = 0; i < 10000; i++) {
+            document.querySelectorAll(".menu-top");
+        }
+        console.timeEnd('querySelectorAll');
+        //querySelectorAll: 1781ms
+
+        console.time('getElementsByClassName');
+        for (var i = 0; i < 10000; i++) {
+            document.getElementsByClassName("menu-top");
+        }
+        console.timeEnd('getElementsByClassName');
+        //getElementsByClassName: 54ms
+    </script>
+</body>
+
+</html>
