@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function fn1(name = "xiaoli") { this.name = name }
+
+    function fn2(age) {
+      this.age = age
+      return this.name + this.age;
+    }
+
+    let aa = fn2.call(fn1("zhang"), 33312);
+
+    // func.apply(thisArg,[arrgsArray])
+    // thisArg 
+    // 必选的。在func 函数运行时使用的this值  如果指定为null 或者 undefined 会自动替换指向全局对象
+
+    console.log('aa', aa);
+    // 实现一个call
+
+    Function.prototype.myCall = function (context = window) {
+      context.fn = this;
+      console.log('this', this);
+      console.log('arg', arguments);
+      let args = [...arguments].slice(1);
+      console.log('args', ...args);
+      let res = context.fn(...args)
+      console.log('res' + res);
+      delete context.fn;
+      return res;
+    }
+
+    let l = fn2.myCall(fn1, 33312);
+
+    Function.prototype.myApply = function(context = window,arr = []){
+      context.fn = this;
+      let res;
+      if(arr.length){
+        res = context.fn(...arr);
+      }else{
+        res = context.fn();
+      }
+      delete context.fn;
+      return res;
+    }
+
+    function sayName(name="xx",age=18){
+      this.name = name;
+      this,age = age;
+      return this.age
+    }
+    let aobj = {
+      name:"aaa",
+      age:24
+    }
+
+    // let age1 = sayName.apply(aobj,)
+    // https://www.jianshu.com/p/9fbeeffdecbe
+    // https://juejin.cn/post/7030759884542967821
+    // https://www.jb51.net/article/234665.htm#_label0
+    // https://juejin.cn/post/7053471988752318472
+    // https://juejin.cn/post/6844903882208837645
+
+
+  </script>
+</body>
+
+</html>
