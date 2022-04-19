@@ -23,51 +23,123 @@
     // thisArg 
     // 必选的。在func 函数运行时使用的this值  如果指定为null 或者 undefined 会自动替换指向全局对象
 
-    console.log('aa', aa);
     // 实现一个call
 
     Function.prototype.myCall = function (context = window) {
       context.fn = this;
-      console.log('this', this);
-      console.log('arg', arguments);
       let args = [...arguments].slice(1);
-      console.log('args', ...args);
       let res = context.fn(...args)
-      console.log('res' + res);
       delete context.fn;
       return res;
     }
 
     let l = fn2.myCall(fn1, 33312);
 
-    Function.prototype.myApply = function(context = window,arr = []){
+    Function.prototype.myApply = function (context = window, arr = []) {
       context.fn = this;
+      console.log('111', this);
+      console.log('222', arr);
       let res;
-      if(arr.length){
+      if (arr.length) {
         res = context.fn(...arr);
-      }else{
+
+      } else {
         res = context.fn();
       }
       delete context.fn;
       return res;
     }
 
-    function sayName(name="xx",age=18){
+    function sayName(name = "xx", age = 18) {
       this.name = name;
-      this,age = age;
-      return this.age
+      this.age = age;
+      console.log('this', this.nick + this.age + this.name);
+
     }
     let aobj = {
-      name:"aaa",
-      age:24
+      name: "aaa",
+      age: 24,
+      nick: "nick"
     }
 
-    // let age1 = sayName.apply(aobj,)
+    let age1 = sayName.myApply(aobj, ["ff", 30])
     // https://www.jianshu.com/p/9fbeeffdecbe
     // https://juejin.cn/post/7030759884542967821
     // https://www.jb51.net/article/234665.htm#_label0
     // https://juejin.cn/post/7053471988752318472
     // https://juejin.cn/post/6844903882208837645
+
+    // 2022-4-18
+    // bind 不会立即执行
+
+    function B1() {
+      this.name = "Dot";
+    }
+    function B2() {
+      B1.call(this);
+      console.log('aa', this);
+      console.log('this', this.name);
+
+    }
+
+    // let B = B2.bind(B1);
+
+    // console.log('BB', B);
+
+
+    // B2();
+
+    function Person(name) {
+      this.xx = name;
+      console.log(this);
+
+      return { xx: name }
+    }
+    Person.prototype.Fname = "Fname";
+
+    // let P1 = new Person("kk"); //this指向 实例对象
+
+    // let P2 = Person("kk"); //this指向window
+
+    // console.log('P1', P1);
+    // console.log('P2', P2);
+
+
+    function Milk(name) {
+      this.xx = name;
+      console.log(this);
+
+      return name
+    }
+
+    Milk.prototype.name = "牛奶";
+
+    let M1 = new Milk("牛奶1"); //this指向 实例对象
+
+    let M2 = Milk("牛奶2"); //this指向window
+
+    console.log('M1', M1);
+    console.log('M2', M2);
+
+    // call bind apply 示例
+
+    function Cat() {
+      this.name = "cocoo";
+      this.say = function (age, sex) {
+        console.log('this', this.name + age + sex);
+      }
+    }
+
+    function Mouse(name) {
+      this.name = name;
+    }
+
+    let cat = new Cat();
+    let mouse = new Mouse("Tom")
+
+    cat.say.call(mouse, 20, 'nan');
+    cat.say.apply(mouse, [20, 'girl'])
+
 
 
   </script>
