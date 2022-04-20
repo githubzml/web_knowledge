@@ -141,6 +141,24 @@
     cat.say.apply(mouse, [20, 'girl'])
 
 
+    // 2022-4-19
+    function C1() {
+      this.name = "kk";
+      this.say = function (age, sex) {
+        console.log('aa', this.name + age + sex);
+      }
+    }
+
+    function DD(name) {
+      this.name = name;
+    }
+
+    let CC = new C1();
+    let LL = new DD("TOM");
+    CC.say.call(LL, 23, 'girl')
+
+    // 函数柯里化
+    
 
   </script>
 </body>

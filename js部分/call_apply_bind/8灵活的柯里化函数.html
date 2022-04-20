@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // https://www.jb51.net/article/234665.htm#_label0
+    // https://es6.ruanyifeng.com/?search=%E6%9F%AF%E9%87%8C%E5%8C%96&x=0&y=0#docs/function#%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96
+    
+    // https://www.jianshu.com/p/fc9c84e3f07a
+    // https://blog.csdn.net/weixin_44098552/article/details/121222653
+    let createCurry = (fn, ...params) => {
+      console.log('fn', fn);
+      // console.log('params', params);
+
+      let args = params || [];
+      let fnLen = fn.length;
+      // console.log('args', args);
+
+      // console.log('fnLen', fnLen);
+
+      return (...res) => {
+        console.log('res', ...res);
+
+        let allArgs = args.slice(0);// 获取上一次的所有参数
+        allArgs.push(...res);
+        if (allArgs.length < fnLen) {
+          return createCurry.call(this, fn, ...allArgs);
+        } else {
+          return fn.apply(this, allArgs);
+        }
+      }
+    }
+
+    function add(a, b, c, d) {
+      return a + b + c + d;
+    }
+    let curryAdd = createCurry(add, 1);
+    console.log('111', curryAdd(2)(3)(4));
+
+    // 柯里化 将多参数的函数转化成但函数形式 不容易阅读
+
+    // 并返回接受余下参数且返回的结果是新函数理念
+
+    // 闭包 柯里化概念
+
+
+
+  </script>
+</body>
+
+</html>
